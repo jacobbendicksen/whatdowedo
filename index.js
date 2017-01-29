@@ -25,6 +25,11 @@ app.get('/events.html', function(req, res) {
     console.log("loaded events.html\n");
 });
 
+app.get('/stream.html', function(req, res) {
+    res.sendFile(path.join(__dirname + '/stream.html'));
+    console.log("loaded stream\n");
+});
+
 app.get('/issues/conflicts.html', function(req, res) {
     res.sendFile(path.join(__dirname + '/issues/conflicts.html'));
     console.log("loaded conflicts\n");
