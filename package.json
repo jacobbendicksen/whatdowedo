@@ -1,0 +1,33 @@
+{
+  "name": "whatdowedo",
+  "version": "0.1.0",
+  "description": "resources",
+  "main": "index.js",
+  "directories": {
+    "example": "examples",
+    "test": "test"
+  },
+  "dependencies": {
+    "chai": "^3.5.0",
+    "express": "4.14.0"
+  },
+  "devDependencies": {
+    "mocha": "^3.2.0"
+  },
+  "scripts": {
+    "test": "make test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jacobbendicksen/whatdowedo.git"
+  },
+  "keywords": [
+    "npm"
+  ],
+  "author": "Jacob Bendicksen <jacob@jacobbendicksen.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/jacobbendicksen/whatdowedo/issues"
+  },
+  "homepage": "https://github.com/jacobbendicksen/whatdowedo#readme"
+}
