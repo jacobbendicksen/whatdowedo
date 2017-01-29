@@ -20,6 +20,11 @@ app.get('/issues.html', function(req, res) {
     console.log("loaded issues.html\n");
 });
 
+app.get('/events.html', function(req, res) {
+    res.sendFile(path.join(__dirname + '/events.html'));
+    console.log("loaded events.html\n");
+});
+
 app.get('/issues/conflicts.html', function(req, res) {
     res.sendFile(path.join(__dirname + '/issues/conflicts.html'));
     console.log("loaded conflicts\n");
@@ -40,14 +45,19 @@ app.get('/issues/racism.html', function(req, res) {
     console.log("loaded racism\n");
 });
 
-app.get('/issues/reproductiverights.html', function(req, res) {
-    res.sendFile(path.join(__dirname + '/issues/reproductiverights.html'));
+app.get('/issues/women.html', function(req, res) {
+    res.sendFile(path.join(__dirname + '/issues/women.html'));
     console.log("loaded reproductiverights\n");
 });
 
 app.get('/issues/refugees.html', function(req, res) {
     res.sendFile(path.join(__dirname + '/issues/refugees.html'));
     console.log("loaded refugees\n");
+});
+
+app.get('/issues/climatechange.html', function(req, res) {
+    res.sendFile(path.join(__dirname + '/issues/climatechange.html'));
+    console.log("loaded climatechange\n");
 });
 
 app.listen(process.env.PORT || 4000);
