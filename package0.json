@@ -1,0 +1,33 @@
+{
+  "name": "newsite",
+  "version": "0.1.0",
+  "description": "framework for new site",
+  "main": "index.js",
+  "directories": {
+    "example": "examples",
+    "test": "test"
+  },
+  "dependencies": {
+    "chai": "^3.5.0",
+    "express": "4.14.0"
+  },
+  "devDependencies": {
+    "mocha": "^3.2.0"
+  },
+  "scripts": {
+    "test": "make test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jacobbendicksen/newsite.git"
+  },
+  "keywords": [
+    "npm"
+  ],
+  "author": "Jacob Bendicksen <jacob@jacobbendicksen.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/jacobbendicksen/newsite/issues"
+  },
+  "homepage": "https://github.com/jacobbendicksen/newsite#readme"
+}
