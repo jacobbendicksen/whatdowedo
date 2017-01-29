@@ -30,6 +30,16 @@ app.get('/stream.html', function(req, res) {
     console.log("loaded stream\n");
 });
 
+app.get('/news.html', function(req, res) {
+    res.sendFile(path.join(__dirname + '/news.html'));
+    console.log("loaded news\n");
+});
+
+app.get('/donate.html', function(req, res) {
+    res.sendFile(path.join(__dirname + '/donate.html'));
+    console.log("loaded donate\n");
+});
+
 app.get('/issues/conflicts.html', function(req, res) {
     res.sendFile(path.join(__dirname + '/issues/conflicts.html'));
     console.log("loaded conflicts\n");
