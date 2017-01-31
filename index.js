@@ -4,6 +4,10 @@ var path = require('path');
 var express = require('express');
 var app = express();
 var router = express.Router();
+var legcontact = require('./legcontact.js');
+var bodyparser = require('body-parser');
+app.use(bodyparser.urlencoded({ extended: false }));
+app.use(bodyparser.json());
 
 app.get('/', function(req, res) {
     res.sendFile(path.join(__dirname + '/index.html'));
@@ -39,6 +43,32 @@ app.get('/donate.html', function(req, res) {
     res.sendFile(path.join(__dirname + '/donate.html'));
     console.log("loaded donate\n");
 });
+
+app.get('/legcontact.html', function(req, res) {
+    res.sendFile(path.join(__dirname + '/legcontact.html'));
+    console.log("loaded legcontact\n");
+});
+
+app.get('/legcontact.js', function(req, res) {
+    res.sendFile(path.join(__dirname + '/legcontact.js'));
+    console.log("loaded legcontact.js\n");
+});
+
+var reps;
+app.post('/leginfo', function(req,res){
+    console.log("posting reps");
+    var addr = req.body.addr;
+    var doctoredAddress = addr.replace(" ", "+");
+    reps = legcontact.getReps(doctoredAddress);
+    console.log(reps);
+    // res.json(reps);
+    // res.sendFile(path.join(__dirname + '/legcontact.html'));
+});
+
+app.get('/leg', function(req,res){
+    console.log("getting reps");
+    res.json(reps);
+})
 
 app.get('/issues/conflicts.html', function(req, res) {
     res.sendFile(path.join(__dirname + '/issues/conflicts.html'));
