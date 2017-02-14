@@ -55,13 +55,13 @@ app.get('/legcontact.js', function(req, res) {
 });
 
 var reps;
-app.post('/leginfo', function(req,res){
+app.get('/leginfo', function(req,res){
     console.log("posting reps");
-    var addr = req.body.addr;
+    var addr = req.query.addr;
     var doctoredAddress = addr.replace(" ", "+");
     reps = legcontact.getReps(doctoredAddress);
     console.log(reps);
-    // res.json(reps);
+    res.json(reps);
     // res.sendFile(path.join(__dirname + '/legcontact.html'));
 });
 
