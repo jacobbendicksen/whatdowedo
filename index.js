@@ -259,11 +259,6 @@ app.post('/newpost', (req, res) => {
     var author = res.locals.currentUser.id;
     var anonymous = req.body.anonymous;
 
-
-        console.log(req.body);
-
-        console.log(anonymous);
-
     if (anonymous === 'on') {
         anonymous = true;
     } else {
@@ -349,10 +344,6 @@ app.post('/update/post/:id', (req, res) => {
     var contents = req.body.contents;
     var tags = req.body.tags;
     var anonymous = req.body.anonymous;
-
-    console.log(req.body);
-
-    console.log(anonymous);
 
     if (anonymous === 'on') {
         anonymous = true;
