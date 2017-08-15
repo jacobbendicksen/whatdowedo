@@ -90,7 +90,8 @@ app.post('/login', (req, res) => {
 app.get('/signup', (req, res) => {
     var email = req.query.email;
     res.render('signup', {
-        email: email
+        email: email,
+        message: ''
     });
 });
 
@@ -100,6 +101,7 @@ app.post('/signup', (req, res) => {
     var passwordConfirm = req.body.passwordConfirm;
     var name = req.body.name;
     var twitter = req.body.twitter;
+
     usersModel.addUser(email, password, passwordConfirm, name, twitter, (user, message, success) => {
         if (success === 3) {
             res.redirect('/login');
