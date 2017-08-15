@@ -47,14 +47,12 @@
         </form>
     </h2>
     <br /><br />
-    {{#if message}}
-        <h4 class="center lato">
+    <h4 class="center lato">
+        {{#if message}}
             {{message}}
-        </h4>
-    {{else}}
-        <h4 class="center lato">
-            (Need an account? Sign up <a href="/signup">here</a>.)
-        </h4>
-    {{/if}}
+            <br />
+        {{/if}}
+        (Need an account? Sign up <a href="/signup">here</a>.)
+    </h4>
 </div>
 <div class="col-xs-1 col-md-2"></div>
