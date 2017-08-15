@@ -204,17 +204,22 @@ function upvote(postid, userid, cb) {
     });
 }
 
-// function getNumberOfPosts(number, featured, cb) {
-//     pool.connect((connectError, client) => {
-//         if (connectError) {
-//             console.error(connectError);
-//             client.release();
-//             return;
-//         }
-//         client.query("SELECT")
-//     });
-// }
-
+function deletePost(id, cb) {
+    pool.connect((connectError, client) => {
+        if (connectError) {
+            console.error(connectError);
+            client.release();
+            return;
+        }
+        client.query("DELETE FROM posts WHERE postid=$1", [id], (error) => {
+            if (error) {
+                console.error(error);
+                return cb("error deleting", false);
+            }
+            return cb(undefined, true);
+        });
+    });
+}
 module.exports = {
     addPost: addPost,
     getAllPosts: getAllPosts,
@@ -223,5 +228,6 @@ module.exports = {
     getPostsByUser: getPostsByUser,
     search: search,
     updatePost: updatePost,
-    upvote: upvote
+    upvote: upvote,
+    deletePost: deletePost
 }

@@ -341,6 +341,14 @@ app.post('/update/post/:id', (req, res) => {
     });
 });
 
+app.get('/delete/post/:id', (req, res) => { // GET request is sloppy here
+    var id = req.params.id;
+
+    postsModel.deletePost(id, (message, success) => {
+        res.redirect('/community');
+    });
+});
+
 app.get('/update/user/', (req, res) => {
     var id = res.locals.currentUser.id;
 

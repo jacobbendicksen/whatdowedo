@@ -40,7 +40,7 @@
             <h3 class="lato">{{post.title}}</h3>
             <h4 class="lato"><a href="/user/{{post.authorid}}">{{post.name}}</a></h4>
             {{#if mine}}
-                <p class="lato"><a href="/update/post/{{id}}">Edit</a></p>
+                <p class="lato"><a href="/update/post/{{id}}">Edit</a> <a href="/delete/post/{{id}}">Delete</a></p>
             {{/if}}
             <span class="lato">{{{post.contents}}}</span>
             <br /><br />
