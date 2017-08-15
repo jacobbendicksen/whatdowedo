@@ -5,9 +5,6 @@ var exphbs = require('express-handlebars');
 var bodyParser = require('body-parser');
 var session = require('express-session');
 
-var PUBLIC_KEY = '6LfEEiEUAAAAABP3KUyf1Oi33tbz797Hde4OLUVI';
-var PRIVATE_KEY = '6LfEEiEUAAAAAGxn1BSD3Unlqa3En63Atu7vCM8l';
-
 var usersModel = require('./models/usersModel.js');
 var postsModel = require('./models/postsModel.js');
 
