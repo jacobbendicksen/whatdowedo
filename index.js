@@ -8,8 +8,8 @@ var session = require('express-session');
 var PUBLIC_KEY = '6LfEEiEUAAAAABP3KUyf1Oi33tbz797Hde4OLUVI';
 var PRIVATE_KEY = '6LfEEiEUAAAAAGxn1BSD3Unlqa3En63Atu7vCM8l';
 
-// var usersModel = require('./models/usersModel.js');
-// var postsModel = require('./models/postsModel.js');
+var usersModel = require('./models/usersModel.js');
+var postsModel = require('./models/postsModel.js');
 
 var app = express();
 
@@ -29,43 +29,42 @@ app.use(session({
     },
 }));
 
-// app.use((req, res, next) => {
-//     if (req.session.userId) {
-//         usersModel.getUserByID(req.session.userId, (error, response) => {
-//             if (error) {
-//                 console.error(error);
-//             } else {
-//                 res.locals.currentUser = response;
-//             }
-//             next();
-//         });
-//     } else {
-//         next();
-//     }
-// });
-//
-// function isLoggedIn(req, res, next) {
-//     if (res.locals.currentUser) {
-//         next();
-//     } else {
-//         res.redirect('/login');
-//     }
-// }
+app.use((req, res, next) => {
+    if (req.session.userId) {
+        usersModel.getUserByID(req.session.userId, (error, response) => {
+            if (error) {
+                console.error(error);
+            } else {
+                res.locals.currentUser = response;
+            }
+            next();
+        });
+    } else {
+        next();
+    }
+});
+
+function isLoggedIn(req, res, next) {
+    if (res.locals.currentUser) {
+        next();
+    } else {
+        res.redirect('/login');
+    }
+}
 
 app.get('/', (req, res) => {
-    // postsModel.getFeaturedPosts((error, response) => {
-    //     if (error) {
-    //         res.render('home', {
-    //             user: res.locals.currentUser
-    //         });
-    //     } else {
-    //         res.render('home', {
-    //             posts: response.rows,
-    //             user: res.locals.currentUser
-    //         });
-    //     }
-    // });
-    res.send('hello world');
+    postsModel.getFeaturedPosts((error, response) => {
+        if (error) {
+            res.render('home', {
+                user: res.locals.currentUser
+            });
+        } else {
+            res.render('home', {
+                posts: response.rows,
+                user: res.locals.currentUser
+            });
+        }
+    });
 });
 
 app.get('/login', (req, res) => {
