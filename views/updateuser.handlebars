@@ -1,0 +1,70 @@
+<head>
+    <title>Update User - WDWD?</title>
+</head>
+
+<nav class="navbar navbar-default">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+            <a class="navbar-brand lato" href="/">WDWD?</a>
+        </div>
+
+        <div class="collapse navbar-collapse lato" id="navbar-collapse">
+            <ul class="nav navbar-nav">
+                <li><a href="/about">About</a></li>
+                <li><a href="/community">Community</a></li>
+                <li><a href="/search">Search</a></li>
+                {{#if user}}
+                <li><a href="/newpost">New Post</a></li>
+                    {{#if me}}
+                        <li class="active"><a href="/user/{{user.id}}">Profile<span class="sr-only">(current)</span></a></li>
+                    {{else}}
+                        <li><a href="/user/{{user.id}}">Profile</a></li>
+                    {{/if}}
+                <li><a href="/logout">Logout</a></li>
+                {{else}}
+                <li><a href="/login">Login</a></li>
+                {{/if}}
+            </ul>
+        </div>
+        <!-- /.navbar-collapse -->
+    </div>
+    <!-- /.container-fluid -->
+</nav>
+
+<div class="col-xs-1 col-md-2"></div>
+<div class="col-xs-10 col-md-8">
+    <h2 class="center lato">
+        Update User
+        <br /><br />
+        <form method="post" action="/update/user">
+            <input name="name" type="text" class="lato form-control" value="{{name}}"/>
+            <br />
+            <input name="email" type="text" class="lato form-control" value="{{email}}" />
+            <br />
+            <input name="password" type="password" class="lato form-control" placeholder="Password"/>
+            <br />
+            <input name="passwordConfirm" type="password" class="lato form-control" placeholder="Confirm password"/>
+            <br />
+            {{#if twitter}}
+            <input name="twitter" type="text" class="lato form-control" value="{{twitter}}" />
+            {{else}}
+            <input name="twitter" type="text" class="lato form-control" placeholder="Twitter username" />
+            {{/if}}
+            <br />
+            <input type="submit" class="btn btn-primary lato"/>
+        </form>
+    </h2>
+    {{#if message}}
+        <h4 class="center lato">
+            <br />
+            {{message}}
+        </h4>
+    {{/if}}
+</div>
+<div class="col-xs-1 col-md-2"></div>

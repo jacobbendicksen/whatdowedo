@@ -1,0 +1,60 @@
+<head>
+    <title>Login - WDWD?</title>
+</head>
+
+<nav class="navbar navbar-default">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+            <a class="navbar-brand lato" href="/">WDWD</a>
+        </div>
+
+        <div class="collapse navbar-collapse lato" id="navbar-collapse">
+            <ul class="nav navbar-nav">
+                <li><a href="/about">About</a></li>
+                <li><a href="/community">Community</a></li>
+                <li><a href="/search">Search</a></li>
+                {{#if user}}
+                <li><a href="/newpost">New Post</a></li>
+                <li><a href="/user/{{user.id}}">Profile</a></li>
+                <li><a href="/logout">Logout</a></li>
+                {{else}}
+                <li class="active"><a href="/login">Login<span class="sr-only">(current)</span></a></li>
+                {{/if}}
+            </ul>
+        </div>
+        <!-- /.navbar-collapse -->
+    </div>
+    <!-- /.container-fluid -->
+</nav>
+
+<div class="col-xs-1 col-md-2"></div>
+<div class="col-xs-10 col-md-8">
+    <h2 class="center lato">
+        Login
+        <br /><br />
+        <form method="post" action="/login">
+            <input name="email" type="text" class="lato form-control" placeholder="Email" autofocus="autofocus"/>
+            <br />
+            <input name="password" type="password" class="lato form-control" placeholder="Password"/>
+            <br />
+            <input type="submit" class="btn btn-primary lato"/>
+        </form>
+    </h2>
+    <br /><br />
+    {{#if message}}
+        <h4 class="center lato">
+            {{message}}
+        </h4>
+    {{else}}
+        <h4 class="center lato">
+            (Need an account? Sign up <a href="/signup">here</a>.)
+        </h4>
+    {{/if}}
+</div>
+<div class="col-xs-1 col-md-2"></div>

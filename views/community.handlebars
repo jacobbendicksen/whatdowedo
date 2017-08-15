@@ -1,0 +1,57 @@
+<head>
+    <title>Community Posts - WDWD?</title>
+</head>
+
+<nav class="navbar navbar-default">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+            <a class="navbar-brand lato" href="/">WDWD?</a>
+        </div>
+
+        <div class="collapse navbar-collapse lato" id="navbar-collapse">
+            <ul class="nav navbar-nav">
+                <li><a href="/about">About</a></li>
+                <li class="active"><a href="/community">Community<span class="sr-only">(current)</span></a></li>
+                <li><a href="/search">Search</a></li>
+                {{#if user}}
+                <li><a href="/newpost">New Post</a></li>
+                <li><a href="/user/{{user.id}}">Profile</a></li>
+                <li><a href="/logout">Logout</a></li>
+                {{else}}
+                <li><a href="/login">Login</a></li>
+                {{/if}}
+            </ul>
+        </div>
+        <!-- /.navbar-collapse -->
+    </div>
+    <!-- /.container-fluid -->
+</nav>
+
+<div class="col-xs-1 col-md-2"></div>
+<div class="col-xs-10 col-md-8">
+    {{#if posts}}
+        {{#each posts}}
+        <p>
+            <h3 class="lato"><a href="/post/{{this.postid}}">{{this.title}}</a></h3>
+            <h4 class="lato"><a href="/user/{{this.authorid}}">{{this.name}}</a></h4>
+            <span class="lato">{{{this.contents}}}</span>
+        </p>
+        <hr />
+        {{/each}}
+    {{else}}
+        <span class="lato">No posts to show!</span>
+    {{/if}}
+    {{#if message}}
+        <h4 class="center lato">
+            <br />
+            {{message}}
+        </h4>
+    {{/if}}
+</div>
+<div class="col-xs-1 col-md-2"></div>
