@@ -1,0 +1,80 @@
+<head>
+    <title>{{post.name}}: {{post.title}} - WDWD?</title>
+</head>
+
+<nav class="navbar navbar-default">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+            <a class="navbar-brand lato" href="/">WDWD?</a>
+        </div>
+
+        <div class="collapse navbar-collapse lato" id="navbar-collapse">
+            <ul class="nav navbar-nav">
+                <li><a href="/about">About</a></li>
+                <li><a href="/community">Community</a></li>
+                <li><a href="/search">Search</a></li>
+                {{#if user}}
+                    <li><a href="/newpost">New Post</a></li>
+                    <li><a href="/user/{{user.id}}">Profile</a></li>
+                    <li><a href="/logout">Logout</a></li>
+                {{else}}
+                    <li><a href="/login">Login</a></li>
+                {{/if}}
+            </ul>
+        </div>
+        <!-- /.navbar-collapse -->
+    </div>
+    <!-- /.container-fluid -->
+</nav>
+
+<div class="col-xs-1 col-md-2"></div>
+<div class="col-xs-10 col-md-8">
+    {{#if post}}
+        <p>
+            <h3 class="lato">{{post.title}}</h3>
+            <h4 class="lato"><a href="/user/{{post.authorid}}">{{post.name}}</a></h4>
+            {{#if mine}}
+                <p class="lato"><a href="/update/post/{{id}}">Edit</a></p>
+            {{/if}}
+            <span class="lato">{{{post.contents}}}</span>
+            <br /><br />
+            <span class="lato" style="font-style:italic">{{post.time}}</span>
+        </p>
+        {{#if post.tag1}}
+            <i class="fa fa-tags" aria-hidden="true" style="font-size: 20px"></i>
+            <a href="/tag/{{post.tag1}}"><span class="lato tag">{{post.tag1}}</span></a>
+            <a href="/tag/{{post.tag2}}"><span class="lato tag">{{post.tag2}}</span></a>
+            <a href="/tag/{{post.tag3}}"><span class="lato tag">{{post.tag3}}</span></a>
+            <a href="/tag/{{post.tag4}}"><span class="lato tag">{{post.tag4}}</span></a>
+            <a href="/tag/{{post.tag5}}"><span class="lato tag">{{post.tag5}}</span></a>
+        {{/if}}
+        <br /><br />
+        {{#if post.upvoted}}
+            <i class="fa fa-thumbs-up" aria-hidden="true"></i>
+        {{else}}
+            <a href="/post/{{post.postid}}/upvote"><i class="fa fa-thumbs-o-up" aria-hidden="true"></i></a>
+        {{/if}}
+        {{post.upvotes_int}}
+        <br /><br />
+        <a href="https://twitter.com/share" class="twitter-share-button" data-show-count="false">Tweet</a>
+        <script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
+        <br />
+        <div class="fb-share-button" data-layout="button" data-size="small" data-mobile-iframe="true"><a class="fb-xfbml-parse-ignore" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fdevelopers.facebook.com%2Fdocs%2Fplugins%2F&amp;src=sdkpreparse">Share</a></div>
+        <br /><br /><br /><br />
+    {{else}}
+        Hmmm... this post doesn't exist.
+    {{/if}}
+    {{#if message}}
+        <h4 class="center lato">
+            <br />
+            {{message}}
+        </h4>
+    {{/if}}
+</div>
+<div class="col-xs-1 col-md-2"></div>

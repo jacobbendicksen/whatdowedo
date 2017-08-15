@@ -1,35 +1,33 @@
 {
+  "dependencies": {
+    "body-parser": "^1.17.1",
+    "express": "^4.15.2",
+    "express-handlebars": "^3.0.0",
+    "express-session": "^1.15.2",
+    "moment": "^2.18.1",
+    "nodemon": "^1.11.0",
+    "pg": "^6.1.5",
+    "pg-pool": "^1.7.1",
+    "sha1": "^1.1.1",
+    "validator": "^7.0.0"
+  },
   "name": "whatdowedo",
   "version": "0.1.0",
-  "description": "resources",
   "main": "index.js",
-  "directories": {
-    "example": "examples",
-    "test": "test"
-  },
-  "dependencies": {
-    "body-parser": "^1.16.0",
-    "chai": "^3.5.0",
-    "express": "4.14.0",
-    "xmlhttprequest": "^1.8.0"
-  },
-  "devDependencies": {
-    "mocha": "^3.2.0"
-  },
+  "devDependencies": {},
   "scripts": {
-    "test": "make test"
+    "test": "test",
+    "start": "nodemon ./index.js"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/jacobbendicksen/whatdowedo.git"
   },
-  "keywords": [
-    "npm"
-  ],
-  "author": "Jacob Bendicksen <jacob@jacobbendicksen.com>",
-  "license": "MIT",
+  "author": "Jacob Bendicksen",
+  "license": "ISC",
   "bugs": {
     "url": "https://github.com/jacobbendicksen/whatdowedo/issues"
   },
-  "homepage": "https://github.com/jacobbendicksen/whatdowedo#readme"
+  "homepage": "https://github.com/jacobbendicksen/whatdowedo#readme",
+  "description": ""
 }

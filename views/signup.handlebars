@@ -1,0 +1,72 @@
+<head>
+    <title>Signup - WDWD?</title>
+    <script type="text/javascript">
+        var RecaptchaOptions = {
+           theme : 'white'
+        };
+    </script>
+</head>
+
+<nav class="navbar navbar-default">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+            <a class="navbar-brand lato" href="/">WDWD</a>
+        </div>
+
+        <div class="collapse navbar-collapse lato" id="navbar-collapse">
+            <ul class="nav navbar-nav">
+                <li><a href="/about">About</a></li>
+                <li><a href="/community">Community</a></li>
+                <li><a href="/search">Search</a></li>
+                {{#if user}}
+                <li><a href="/newpost">New Post</a></li>
+                <li><a href="/user/{{user.id}}">Profile</a></li>
+                <li><a href="/logout">Logout</a></li>
+                {{else}}
+                <li><a href="/login">Login</a></li>
+                {{/if}}
+            </ul>
+        </div>
+        <!-- /.navbar-collapse -->
+    </div>
+    <!-- /.container-fluid -->
+</nav>
+<div class="col-xs-1 col-md-2"></div>
+<div class="col-xs-10 col-md-8">
+    <h2 class="center lato">
+        Signup
+        <br /><br />
+        <form method="post" action="/signup">
+            {{#if email}}
+            <input name="email" type="text" class="lato form-control" value="{{email}}"/>
+            {{else}}
+            <input name="email" type="text" class="lato form-control" placeholder="Email"/>
+            {{/if}}
+            <br />
+            <input name="name" type="text" class="lato form-control" placeholder="First and last name"/>
+            <br />
+            <input name="password" type="password" class="lato form-control" placeholder="Password"/>
+            <br />
+            <input name="passwordConfirm" type="password" class="lato form-control" placeholder="Confirm password"/>
+            <br />
+            <input name="twitter" type="text" class="lato form-control" placeholder="Twitter username"/>
+            <br />
+            <script type="text/javascript" src="https://www.google.com/recaptcha/api/challenge?k=6LfEEiEUAAAAABP3KUyf1Oi33tbz797Hde4OLUVI"></script><noscript><iframe src="http://www.google.com/recaptcha/api/noscript?k=6LfEEiEUAAAAABP3KUyf1Oi33tbz797Hde4OLUVI" height="300" width="500" frameborder="0"></iframe><br><textarea name="recaptcha_challenge_field" rows="3" cols="40"></textarea><input type="hidden" name="recaptcha_response_field" value="manual_challenge"></noscript>
+            <br />
+            <input type="submit" class="btn btn-primary lato"/>
+        </form>
+    </h2>
+    {{#if message}}
+        <h4 class="center lato">
+            <br />
+            {{message}}
+        </h4>
+    {{/if}}
+</div>
+<div class="col-xs-1 col-md-2"></div>
