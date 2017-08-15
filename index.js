@@ -415,4 +415,8 @@ app.get('/post/:id/upvote', (req, res) => {
     });
 });
 
-app.listen(process.env.PORT || 4000);
+var port = process.env.PORT || 4000;
+
+app.listen(port, () => {
+    console.log('server running on port ' + port);
+});
