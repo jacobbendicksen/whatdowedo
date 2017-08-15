@@ -39,7 +39,11 @@
         {{#each posts}}
         <p>
             <h3 class="lato"><a href="/post/{{this.postid}}">{{this.title}}</a></h3>
+            {{#if this.anonymous}}
+            <h4 class="lato">Anonymous</h4>
+            {{else}}
             <h4 class="lato"><a href="/user/{{this.authorid}}">{{this.name}}</a></h4>
+            {{/if}}
             <span class="lato">{{{this.contents}}}</span>
         </p>
         <hr />

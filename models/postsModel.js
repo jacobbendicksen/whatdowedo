@@ -13,7 +13,7 @@ const pool = new Pool({
     ssl: true,
 });
 
-function addPost(title, contents, author, featured, tags, cb) {
+function addPost(title, contents, author, featured, tags, anonymous, cb) {
     pool.connect((connectError, client) => {
         if (connectError) {
             console.error(connectError);
@@ -28,7 +28,7 @@ function addPost(title, contents, author, featured, tags, cb) {
         for (var x = tags.length; x<5; x++){
             tags[x] = "";
         }
-        client.query("INSERT INTO posts (title, contents, postid, authorid, featured, time, tag1, tag2, tag3, tag4, tag5, upvotes_int, upvotes) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13)", [title, contents, sha1(title + author + contents), author, featured, moment(new Date()).format("YYYY-MM-DD HH:mm:ss"), tags[0], tags[1], tags[2], tags[3], tags[4], 0, ""], (error) => {
+        client.query("INSERT INTO posts (title, contents, postid, authorid, featured, time, tag1, tag2, tag3, tag4, tag5, upvotes_int, upvotes, anonymous) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14)", [title, contents, sha1(title + author + contents), author, featured, moment(new Date()).format("YYYY-MM-DD HH:mm:ss"), tags[0], tags[1], tags[2], tags[3], tags[4], 0, "", anonymous], (error) => {
             if (error) {
                 console.error(error);
                 client.release();
@@ -114,7 +114,7 @@ function getPostsByUser(user, cb) {
             client.release();
             return;
         }
-        client.query("SELECT * FROM posts JOIN users ON authorid = id WHERE authorid=$1 ORDER BY time ASC", [user], (error, response) => {
+        client.query("SELECT * FROM posts JOIN users ON authorid = id WHERE authorid=$1 AND anonymous=$2 ORDER BY time ASC", [user, false], (error, response) => {
             if (error) {
                 console.error(error);
                 client.release();
@@ -157,7 +157,7 @@ function search(tag, cb) {
     });
 }
 
-function updatePost(id, title, contents, tags, cb) {
+function updatePost(id, title, contents, tags, anonymous, cb) {
     pool.connect((connectError, client) => {
         if (connectError) {
             console.error(connectError);
@@ -169,7 +169,7 @@ function updatePost(id, title, contents, tags, cb) {
             tagslist[x] = "";
         }
         contents = contents.replace(/\r/g, "<br><br>");
-        client.query("UPDATE posts SET title=$1, contents=$2, tag1=$3, tag2=$4, tag3=$5, tag4=$6, tag5=$7, time=$8 WHERE postid=$9", [title, contents, tagslist[0], tagslist[1], tagslist[2], tagslist[3], tagslist[4], moment(new Date()).format("YYYY-MM-DD HH:mm:ss"), id], (error) => {
+        client.query("UPDATE posts SET title=$1, contents=$2, tag1=$3, tag2=$4, tag3=$5, tag4=$6, tag5=$7, time=$8, anonymous=$9 WHERE postid=$10", [title, contents, tagslist[0], tagslist[1], tagslist[2], tagslist[3], tagslist[4], moment(new Date()).format("YYYY-MM-DD HH:mm:ss"), anonymous, id], (error) => {
             if (error) {
                 console.error(error);
                 return cb("error updating", false);

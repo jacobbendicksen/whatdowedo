@@ -56,6 +56,16 @@
             {{else}}
             <input name="tags" type="text" class="lato form-control" placeholder="Up to 5 tags - separate with spaces!"/>
             {{/if}}
+            <br />
+        </h2>
+        <div class="center lato checkbox form-inline">
+            {{#if anonymous}}
+            <label><input name="anonymous" type="checkbox" class="lato form-control" data-toggle="toggle" value="anonymous" checked/> Anonymous</label>
+            {{else}}
+            <label><input name="anonymous" type="checkbox" class="lato form-control" value="anonymous" data-toggle="toggle"/> Anonymous</label>
+            {{/if}}
+        </div>
+        <h2 class="center lato">
             <br /><br />
             <input type="submit" class="btn btn-primary lato"/>
         </form>

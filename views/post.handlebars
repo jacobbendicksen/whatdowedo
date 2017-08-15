@@ -38,7 +38,11 @@
     {{#if post}}
         <p>
             <h3 class="lato">{{post.title}}</h3>
+            {{#if post.anonymous}}
+            <h4 class="lato">Anonymous</h4>
+            {{else}}
             <h4 class="lato"><a href="/user/{{post.authorid}}">{{post.name}}</a></h4>
+            {{/if}}
             {{#if mine}}
                 <p class="lato"><a href="/update/post/{{id}}">Edit</a> <a href="/delete/post/{{id}}">Delete</a></p>
             {{/if}}

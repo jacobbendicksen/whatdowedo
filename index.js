@@ -257,6 +257,18 @@ app.post('/newpost', (req, res) => {
     var contents = req.body.contents;
     var tags = req.body.tags;
     var author = res.locals.currentUser.id;
+    var anonymous = req.body.anonymous;
+
+
+        console.log(req.body);
+
+        console.log(anonymous);
+
+    if (anonymous === 'on') {
+        anonymous = true;
+    } else {
+        anonymous = false;
+    }
 
     var tagslist = tags.split(" ");
 
@@ -282,7 +294,7 @@ app.post('/newpost', (req, res) => {
         return;
     }
 
-    postsModel.addPost(title, contents, author, false, tagslist, (message, success) => {
+    postsModel.addPost(title, contents, author, false, tagslist, anonymous, (message, success) => {
         if (success) {
             postsModel.getAllPosts((error, response) => {
                 if (error) {
@@ -324,7 +336,8 @@ app.get('/update/post/:id', (req, res) => {
                 contents: post.contents,
                 tags: tags,
                 id: id,
-                user: res.locals.currentUser
+                user: res.locals.currentUser,
+                anonymous: post.anonymous
             });
         }
     });
@@ -335,8 +348,18 @@ app.post('/update/post/:id', (req, res) => {
     var title = req.body.title;
     var contents = req.body.contents;
     var tags = req.body.tags;
+    var anonymous = req.body.anonymous;
 
-    postsModel.updatePost(id, title, contents, tags, (message, success) => {
+    console.log(req.body);
+
+    console.log(anonymous);
+
+    if (anonymous === 'on') {
+        anonymous = true;
+    } else {
+        anonymous = false;
+    }
+    postsModel.updatePost(id, title, contents, tags, anonymous, (message, success) => {
         res.redirect('/post/' + id);
     });
 });
